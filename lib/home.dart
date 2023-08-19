@@ -92,12 +92,6 @@ class _HomeState extends State<Home> {
                                 return Moviedetails(selected: selectedMovie);
                               },
                             ));
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => Moviedetails(
-                            //               selected: selectedMovie,
-                            //             )));
                           },
                           child: AnimatedContainer(
                               duration: const Duration(milliseconds: 500),

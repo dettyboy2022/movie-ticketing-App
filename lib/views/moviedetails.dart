@@ -43,6 +43,7 @@ class _MoviedetailsState extends State<Moviedetails> {
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ListTile(
                         contentPadding: EdgeInsets.zero,
@@ -130,7 +131,27 @@ class _MoviedetailsState extends State<Moviedetails> {
                           )
                         ],
                       ),
-                      const Divider()
+                      const Divider(),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: casts
+                                .map((e) => Container(
+                                      decoration:
+                                          BoxDecoration(border: Border.all()),
+                                      child: Column(
+                                        children: [
+                                          Image.network(
+                                            e['image'],
+                                            width: 50,
+                                          ),
+                                          Text(e['text'])
+                                        ],
+                                      ),
+                                    ))
+                                .toList()),
+                      )
                     ],
                   ),
                 ),
@@ -257,3 +278,26 @@ class _MoviedetailsState extends State<Moviedetails> {
     );
   }
 }
+
+List casts = [
+  {
+    'image':
+        'https://th.bing.com/th/id/R.7d472b66940013e0d6cf8aeae4054f1d?rik=nNhL4V%2f31npOWg&pid=ImgRaw&r=0.jpg',
+    'text': 'ddddd'
+  },
+  {
+    'image':
+        'https://th.bing.com/th/id/R.7d472b66940013e0d6cf8aeae4054f1d?rik=nNhL4V%2f31npOWg&pid=ImgRaw&r=0.jpg',
+    'text': 'ddddd'
+  },
+  {
+    'image':
+        'https://th.bing.com/th/id/R.7d472b66940013e0d6cf8aeae4054f1d?rik=nNhL4V%2f31npOWg&pid=ImgRaw&r=0.jpg',
+    'text': 'ddddd'
+  },
+  {
+    'image':
+        'https://th.bing.com/th/id/R.7d472b66940013e0d6cf8aeae4054f1d?rik=nNhL4V%2f31npOWg&pid=ImgRaw&r=0.jpg',
+    'text': 'ddddd'
+  }
+];
