@@ -132,26 +132,77 @@ class _MoviedetailsState extends State<Moviedetails> {
                         ],
                       ),
                       const Divider(),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: casts
-                                .map((e) => Container(
-                                      decoration:
-                                          BoxDecoration(border: Border.all()),
-                                      child: Column(
-                                        children: [
-                                          Image.network(
-                                            e['image'],
-                                            width: 50,
-                                          ),
-                                          Text(e['text'])
-                                        ],
-                                      ),
-                                    ))
-                                .toList()),
-                      )
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: casts
+                              .map((e) => Container(
+                                    decoration:
+                                        BoxDecoration(border: Border.all()),
+                                    child: Column(
+                                      children: [
+                                        Image.network(
+                                          e['image'],
+                                          width: 50,
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          e['text'],
+                                          style: const TextStyle(
+                                              color: Colors.white),
+                                        )
+                                      ],
+                                    ),
+                                  ))
+                              .toList()),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Text(
+                        'Description : ',
+                        style: TextStyle(fontSize: 18, color: Colors.white),
+                      ),
+                      const Text(
+                        'In a futuristic world torn by conflict, a reluctant hero emerges to uncover a hidden truth that could change everything. As secrets unravel and alliances shift, the fate of humanity hangs in the balance',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Text(
+                        'Directors : ',
+                        style: TextStyle(fontSize: 18, color: Colors.white),
+                      ),
+                      const Text(
+                        'In a futuristic world torn by conflict, a reluctant hero emerges to uncover a hidden truth that could change everything. As secrets unravel and alliances shift, the fate of humanity hangs in the balance',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Text(
+                        'Writer : ',
+                        style: TextStyle(fontSize: 18, color: Colors.white),
+                      ),
+                      const Text(
+                        'In a futuristic world torn by conflict, a reluctant hero emerges to uncover a hidden truth that could change everything. As secrets unravel and alliances shift, the fate of humanity hangs in the balance',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Text(
+                        'Storyline : ',
+                        style: TextStyle(fontSize: 18, color: Colors.white),
+                      ),
+                      const Text(
+                        'In a futuristic world torn by conflict, a reluctant hero emerges to uncover a hidden truth that could change everything. As secrets unravel and alliances shift, the fate of humanity hangs in the balance',
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ],
                   ),
                 ),
