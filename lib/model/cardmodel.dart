@@ -7,23 +7,23 @@ class PageViewData {
 
 List<PageViewData> pagedata = [
   PageViewData(
-      title: 'The Witcher 3',
+      title: 'OPPENHEIMER',
       url:
-          'https://i.pinimg.com/originals/f3/62/07/f3620778355f6521b484fabd80f0e4c3.jpg'),
+          'https://th.bing.com/th/id/OIP.BMFFsuNilrLPO-QCaqiz6AHaHa?pid=ImgDet&rs=1.jpg'),
   PageViewData(
-      title: 'COD: Warzone',
+      title: 'JOHN WICK 4',
       url:
-          'https://th.bing.com/th/id/R.7d472b66940013e0d6cf8aeae4054f1d?rik=nNhL4V%2f31npOWg&pid=ImgRaw&r=0.jpg'),
+          'https://th.bing.com/th/id/OIP.myC6bVAskA8E8-lZvY9mbQHaLG?pid=ImgDet&rs=1'),
   PageViewData(
-      title: 'Red Dead Redemption',
+      title: 'CREED 3',
       url:
-          'https://th.bing.com/th/id/R.9931932ced73e10b60c53c6cfd0368e2?rik=QZMroKStrDIB2A&pid=ImgRaw&r=0.jpg'),
+          'https://th.bing.com/th/id/R.e2e77e4a7f4d37524b05a168916b8c68?rik=w24ydOOpLDdvRg&pid=ImgRaw&r=0.jpg'),
   PageViewData(
-      title: 'Uncharted 4',
+      title: 'CAPTAIN AMERICA',
       url:
-          'https://th.bing.com/th/id/R.55ed386aabf0e6f32e82e5718f68e94d?rik=vrLTGSaWr1%2fFoQ&pid=ImgRaw&r=0.jpg'),
+          'https://th.bing.com/th/id/OIP.iHcnkT3-3DHSTN0YMW9HYwAAAA?pid=ImgDet&rs=1.jpg'),
   PageViewData(
-      title: 'GTA V',
+      title: 'TERMINATOR',
       url:
-          'https://th.bing.com/th/id/R.e5a8653a925f5aef42c400ceb71db42d?rik=%2fOVr1QCLT7dmCg&pid=ImgRaw&r=0.jpg'),
+          'https://th.bing.com/th/id/R.1e8f5e2b279d8e2dafdc6b688c18bf82?rik=SerwsociamDzlA&pid=ImgRaw&r=0.jpg'),
 ];

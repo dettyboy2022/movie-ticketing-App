@@ -14,16 +14,6 @@ class _HomeState extends State<Home> {
   late PageController _controller;
   int _currentPage = 0;
 
-  List<PageViewData> page = pagedata;
-
-  final List<String> _pageImages = [
-    'https://i.pinimg.com/originals/f3/62/07/f3620778355f6521b484fabd80f0e4c3.jpg',
-    'https://th.bing.com/th/id/R.7d472b66940013e0d6cf8aeae4054f1d?rik=nNhL4V%2f31npOWg&pid=ImgRaw&r=0.jpg',
-    'https://th.bing.com/th/id/R.9931932ced73e10b60c53c6cfd0368e2?rik=QZMroKStrDIB2A&pid=ImgRaw&r=0.jpg',
-    'https://th.bing.com/th/id/R.55ed386aabf0e6f32e82e5718f68e94d?rik=vrLTGSaWr1%2fFoQ&pid=ImgRaw&r=0.jpg',
-    'https://th.bing.com/th/id/R.e5a8653a925f5aef42c400ceb71db42d?rik=%2fOVr1QCLT7dmCg&pid=ImgRaw&r=0.jpg'
-  ];
-
   @override
   void initState() {
     super.initState();
@@ -37,7 +27,7 @@ class _HomeState extends State<Home> {
       height: double.infinity,
       decoration: BoxDecoration(
           image: DecorationImage(
-              image: NetworkImage(_pageImages[_currentPage]),
+              image: NetworkImage(pagedata[_currentPage].url),
               fit: BoxFit.cover)),
       child: SafeArea(
         child: Scaffold(
@@ -93,22 +83,22 @@ class _HomeState extends State<Home> {
                               },
                             ));
                           },
-                          child: AnimatedContainer(
-                              duration: const Duration(milliseconds: 500),
-                              curve: Curves.bounceInOut,
+                          child: Container(
+                              // duration: const Duration(seconds: 1),
+                              // curve: Curves.easeInBack,
                               padding: const EdgeInsets.all(10),
                               margin: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.grey.withOpacity(0.9),
-                                    spreadRadius: 5,
-                                    blurRadius: 10,
-                                    offset: const Offset(0, 3),
+                                    color: Colors.white10.withOpacity(0.9),
+                                    // spreadRadius: 5,
+                                    // blurRadius: 10,
+                                    // offset: const Offset(0, 5),
                                   ),
                                 ],
                                 borderRadius: BorderRadius.circular(30),
-                                color: Colors.white,
+                                color: Colors.black38,
                               ),
                               child: Column(
                                 children: [
@@ -161,13 +151,23 @@ class _HomeState extends State<Home> {
                                     children: [
                                       OutlinedButton(
                                           onPressed: () {},
-                                          child: const Text('Sci-Fi')),
+                                          child: const Text(
+                                            'Sci-Fi',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          )),
                                       OutlinedButton(
                                           onPressed: () {},
-                                          child: const Text('Action')),
+                                          child: const Text('Action',
+                                              style: TextStyle(
+                                                  color: Colors.white))),
                                       OutlinedButton(
                                           onPressed: () {},
-                                          child: const Text('Comedy'))
+                                          child: const Text(
+                                            'Comedy',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ))
                                     ],
                                   )
                                 ],
@@ -181,7 +181,9 @@ class _HomeState extends State<Home> {
                 width: 300,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
-                    border: Border.all(color: Colors.white)),
+                    border: Border.all(
+                      color: Colors.white,
+                    )),
                 child: const BottomAppBar(
                   color: Colors.transparent,
                   elevation: 0,

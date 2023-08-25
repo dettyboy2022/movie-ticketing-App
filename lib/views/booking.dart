@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'ticktet.dart';
+
 class Bookings extends StatefulWidget {
   const Bookings({super.key});
 
@@ -80,14 +82,22 @@ class _BookingsState extends State<Bookings> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: time
-                      .map((e) => Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 10),
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.white)),
-                            child: Text(
-                              e,
-                              style: const TextStyle(color: Colors.white),
+                      .map((e) => GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                selectedTime = e;
+                              });
+                            },
+                            child: Container(
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.white)),
+                              child: Text(
+                                e,
+                                style: const TextStyle(color: Colors.white),
+                              ),
                             ),
                           ))
                       .toList(),
@@ -106,9 +116,16 @@ class _BookingsState extends State<Bookings> {
                   children: cinemaType
                       .map((e) => Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Text(
-                              e,
-                              style: const TextStyle(color: Colors.white),
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  selectedCinema = e;
+                                });
+                              },
+                              child: Text(
+                                e,
+                                style: const TextStyle(color: Colors.white),
+                              ),
                             ),
                           ))
                       .toList(),
@@ -189,12 +206,42 @@ class _BookingsState extends State<Bookings> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  // ElevatedButton(
+                  //   onPressed: () {
+                  //     if (selectedTime != null) {
+                  //       Navigator.push(
+                  //         context,
+                  //         MaterialPageRoute(
+                  //           builder: (context) =>
+                  //               Ticket(selectedTime: selectedTime),
+                  //         ),
+                  //       );
+                  //     } else {
+                  //       // Handle case where no time is selected
+                  //     }
+                  //   },
+                  //   child: Text('Get Ticket'),
+                  // ),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5)),
                           minimumSize: const Size(300, 50)),
-                      onPressed: () {},
+                      onPressed: () {
+                        if (selectedTime != null) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Ticket(
+                                selectedTime: selectedTime,
+                                selectedCinema: selectedCinema,
+                              ),
+                            ),
+                          );
+                        } else {
+                          // Handle case where no time is selected
+                        }
+                      },
                       child: const Text('Buy Tickets')),
                 ],
               )
@@ -215,6 +262,8 @@ class _BookingsState extends State<Bookings> {
     '11:50 PM',
   ];
 
+  late String selectedTime;
+
   List cinemaType = [
     'Extreme 3D',
     'Ultra 4K',
@@ -225,4 +274,6 @@ class _BookingsState extends State<Bookings> {
     'BLU-RAY',
     'IMAX',
   ];
+
+  late String selectedCinema;
 }

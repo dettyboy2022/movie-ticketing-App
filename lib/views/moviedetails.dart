@@ -10,6 +10,8 @@ class Moviedetails extends StatefulWidget {
   State<Moviedetails> createState() => _MoviedetailsState();
 }
 
+List<String> textList = ['Action', 'Adventure', 'Western'];
+
 class _MoviedetailsState extends State<Moviedetails> {
   @override
   Widget build(BuildContext context) {
@@ -20,8 +22,10 @@ class _MoviedetailsState extends State<Moviedetails> {
           CustomScrollView(
             slivers: [
               SliverAppBar(
-                iconTheme: const IconThemeData(color: Colors.white),
-                expandedHeight: 300,
+                backgroundColor: Colors.black,
+                // floating: true,
+                // snap: true,
+                expandedHeight: 400,
                 flexibleSpace: FlexibleSpaceBar(
                   background: ClipRRect(
                     borderRadius: const BorderRadius.only(
@@ -31,8 +35,6 @@ class _MoviedetailsState extends State<Moviedetails> {
                       tag: 'animate-${widget.selected.url}',
                       child: Image.network(
                         widget.selected.url,
-                        // width: double.infinity,
-                        // height: 300,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -41,7 +43,10 @@ class _MoviedetailsState extends State<Moviedetails> {
               ),
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.only(
+                    left: 10,
+                    right: 10,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -54,10 +59,6 @@ class _MoviedetailsState extends State<Moviedetails> {
                               fontWeight: FontWeight.w500,
                               color: Colors.white),
                         ),
-                        subtitle: const Text(
-                          'welcome',
-                          style: TextStyle(color: Colors.white),
-                        ),
                         trailing: const Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -66,70 +67,51 @@ class _MoviedetailsState extends State<Moviedetails> {
                               color: Colors.yellow,
                             ),
                             SizedBox(
-                              width: 20,
+                              width: 18,
                             ),
                             Text(
                               '9.1',
                               style:
-                                  TextStyle(fontSize: 18, color: Colors.white),
+                                  TextStyle(fontSize: 16, color: Colors.white),
                             )
                           ],
                         ),
                       ),
                       Row(
-                        children: [
-                          Container(
-                              padding: const EdgeInsets.all(7),
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.white)),
-                              child: const Text(
-                                'Animated',
-                                style: TextStyle(color: Colors.white),
-                              )),
-                          const SizedBox(
-                            width: 15,
-                          ),
-                          Container(
-                              padding: const EdgeInsets.all(7),
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.white)),
-                              child: const Text(
-                                'Animated',
-                                style: TextStyle(color: Colors.white),
-                              )),
-                          const SizedBox(
-                            width: 15,
-                          ),
-                          Container(
-                              padding: const EdgeInsets.all(7),
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.white)),
-                              child: const Text(
-                                'Animated',
-                                style: TextStyle(color: Colors.white),
-                              )),
-                        ],
+                        children: List.generate(
+                            textList.length,
+                            (index) => Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 5),
+                                  child: OutlinedButton(
+                                      onPressed: () {},
+                                      child: Text(
+                                        textList[index],
+                                        style: const TextStyle(
+                                            color: Colors.white),
+                                      )),
+                                )),
                       ),
                       const SizedBox(
                         height: 15,
                       ),
                       const Divider(),
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'xscedcdvd',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          Text(
-                            'xscedcdvd',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          Text(
-                            'xscedcdvd',
-                            style: TextStyle(color: Colors.white),
-                          )
-                        ],
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: List.generate(
+                            textList.length,
+                            (index) => const Column(
+                                  children: [
+                                    Text(
+                                      'IMBD Rating',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    Text(
+                                      '6/10',
+                                      style: TextStyle(color: Colors.white),
+                                    )
+                                  ],
+                                )),
                       ),
                       const Divider(),
                       const SizedBox(
@@ -145,7 +127,9 @@ class _MoviedetailsState extends State<Moviedetails> {
                                       children: [
                                         Image.network(
                                           e['image'],
-                                          width: 50,
+                                          width: 80,
+                                          height: 80,
+                                          fit: BoxFit.cover,
                                         ),
                                         const SizedBox(
                                           height: 10,
@@ -307,6 +291,8 @@ class _MoviedetailsState extends State<Moviedetails> {
               left: 30,
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
                       minimumSize: const Size(300, 60)),
                   onPressed: () {
                     Navigator.push(
@@ -334,21 +320,21 @@ List casts = [
   {
     'image':
         'https://th.bing.com/th/id/R.7d472b66940013e0d6cf8aeae4054f1d?rik=nNhL4V%2f31npOWg&pid=ImgRaw&r=0.jpg',
-    'text': 'ddddd'
+    'text': 'James'
   },
   {
     'image':
         'https://th.bing.com/th/id/R.7d472b66940013e0d6cf8aeae4054f1d?rik=nNhL4V%2f31npOWg&pid=ImgRaw&r=0.jpg',
-    'text': 'ddddd'
+    'text': 'Scott'
   },
   {
     'image':
         'https://th.bing.com/th/id/R.7d472b66940013e0d6cf8aeae4054f1d?rik=nNhL4V%2f31npOWg&pid=ImgRaw&r=0.jpg',
-    'text': 'ddddd'
+    'text': 'Daniel'
   },
   {
     'image':
         'https://th.bing.com/th/id/R.7d472b66940013e0d6cf8aeae4054f1d?rik=nNhL4V%2f31npOWg&pid=ImgRaw&r=0.jpg',
-    'text': 'ddddd'
+    'text': 'Collins'
   }
 ];
