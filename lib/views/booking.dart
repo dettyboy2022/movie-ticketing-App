@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../model/cardmodel.dart';
 import 'ticktet.dart';
 
 class Bookings extends StatefulWidget {
-  const Bookings({super.key});
+  final PageViewData selectedMovie;
+  const Bookings({super.key, required this.selectedMovie});
 
   @override
   State<Bookings> createState() => _BookingsState();
 }
 
 class _BookingsState extends State<Bookings> {
+  late String selectedSeat;
+
+  void _onSeatSelected(String seat) {
+    setState(() {
+      selectedSeat = seat;
+    });
+  }
+
   TextEditingController dateControl = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -138,8 +148,11 @@ class _BookingsState extends State<Bookings> {
                     crossAxisCount: 5,
                   ),
                   itemBuilder: (context, index) {
+                    final seat = 'Seat ${index + 1}';
                     return IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          _onSeatSelected(seat);
+                        },
                         icon: const Icon(
                           Icons.chair,
                           color: Colors.white,
@@ -206,22 +219,6 @@ class _BookingsState extends State<Bookings> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // ElevatedButton(
-                  //   onPressed: () {
-                  //     if (selectedTime != null) {
-                  //       Navigator.push(
-                  //         context,
-                  //         MaterialPageRoute(
-                  //           builder: (context) =>
-                  //               Ticket(selectedTime: selectedTime),
-                  //         ),
-                  //       );
-                  //     } else {
-                  //       // Handle case where no time is selected
-                  //     }
-                  //   },
-                  //   child: Text('Get Ticket'),
-                  // ),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
@@ -235,6 +232,9 @@ class _BookingsState extends State<Bookings> {
                               builder: (context) => Ticket(
                                 selectedTime: selectedTime,
                                 selectedCinema: selectedCinema,
+                                selectedSeat: selectedSeat,
+                                selectedTitle: widget.selectedMovie.title,
+                                selectedImageUrl: widget.selectedMovie.url,
                               ),
                             ),
                           );

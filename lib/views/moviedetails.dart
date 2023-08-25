@@ -43,10 +43,8 @@ class _MoviedetailsState extends State<Moviedetails> {
               ),
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.only(
-                    left: 10,
-                    right: 10,
-                  ),
+                  padding:
+                      const EdgeInsets.only(left: 10, right: 10, bottom: 100),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -124,12 +122,18 @@ class _MoviedetailsState extends State<Moviedetails> {
                                     decoration:
                                         BoxDecoration(border: Border.all()),
                                     child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Image.network(
-                                          e['image'],
-                                          width: 80,
-                                          height: 80,
-                                          fit: BoxFit.cover,
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          child: Image.network(
+                                            e['image'],
+                                            width: 80,
+                                            height: 80,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                         const SizedBox(
                                           height: 10,
@@ -162,14 +166,14 @@ class _MoviedetailsState extends State<Moviedetails> {
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                       const Text(
-                        'In a futuristic world torn by conflict, a reluctant hero emerges to uncover a hidden truth that could change everything. As secrets unravel and alliances shift, the fate of humanity hangs in the balance',
+                        'James Cameron, Dwayne Johnson, Will Smith',
                         style: TextStyle(color: Colors.white),
                       ),
                       const SizedBox(
                         height: 10,
                       ),
                       const Text(
-                        'Writer : ',
+                        'Writers : ',
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                       const Text(
@@ -184,7 +188,7 @@ class _MoviedetailsState extends State<Moviedetails> {
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                       const Text(
-                        'In a futuristic world torn by conflict, a reluctant hero emerges to uncover a hidden truth that could change everything. As secrets unravel and alliances shift, the fate of humanity hangs in the balance',
+                        'Amidst this surreal occurrence, Sarah, a gifted artist haunted by a tragic loss, discovers that she can control these echoes. As she delves into the echoes, she uncovers long-forgotten secrets and embarks on a journey to rewrite her own history.',
                         style: TextStyle(color: Colors.white),
                       ),
                     ],
@@ -193,98 +197,6 @@ class _MoviedetailsState extends State<Moviedetails> {
               )
             ],
           ),
-          // Positioned(
-          //   top: 280,
-          //   left: 15,
-          //   right: 15,
-          //   child: Container(
-          //     padding: const EdgeInsets.all(15),
-          //     width: 350,
-          //     decoration: BoxDecoration(
-          //         borderRadius: BorderRadius.circular(10),
-          //         color: Colors.black,
-          //         border: Border.all(color: Colors.white)),
-          //     child: Column(
-          //       children: [
-          //         Row(
-          //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //           children: [
-          //             Text(
-          //               widget.selected.title,
-          //               style: const TextStyle(
-          //                   color: Colors.white,
-          //                   fontSize: 20,
-          //                   fontWeight: FontWeight.w600),
-          //             ),
-          //             const Icon(
-          //               Icons.save,
-          //               color: Colors.white,
-          //             )
-          //           ],
-          //         ),
-          //         const SizedBox(
-          //           height: 10,
-          //         ),
-          //         const Row(
-          //           children: [
-          //             Text(
-          //               '2021',
-          //               style: TextStyle(
-          //                   color: Colors.white,
-          //                   fontSize: 18,
-          //                   fontWeight: FontWeight.w500),
-          //             ),
-          //             SizedBox(
-          //               width: 10,
-          //             ),
-          //             Text('Adventure',
-          //                 style: TextStyle(
-          //                     color: Colors.white,
-          //                     fontSize: 18,
-          //                     fontWeight: FontWeight.w500))
-          //           ],
-          //         ),
-          //         ListTile(
-          //           contentPadding: EdgeInsets.zero,
-          //           leading: const Icon(
-          //             Icons.person,
-          //             color: Colors.white,
-          //           ),
-          //           title: Text(
-          //             widget.selected.title,
-          //             style: const TextStyle(
-          //               color: Colors.white,
-          //             ),
-          //           ),
-          //           subtitle: const Text(
-          //             'Sony Games',
-          //             style: TextStyle(
-          //               color: Colors.white,
-          //             ),
-          //           ),
-          //           trailing: Container(
-          //             padding: const EdgeInsets.all(5),
-          //             decoration: BoxDecoration(
-          //                 border: Border.all(color: Colors.white)),
-          //             child: const Row(
-          //               mainAxisSize: MainAxisSize.min,
-          //               children: [
-          //                 Icon(
-          //                   Icons.play_arrow,
-          //                   color: Colors.white,
-          //                 ),
-          //                 Text(
-          //                   'Watch Trailer',
-          //                   style: TextStyle(color: Colors.white),
-          //                 )
-          //               ],
-          //             ),
-          //           ),
-          //         )
-          //       ],
-          //     ),
-          //   ),
-          // ),
           Positioned(
               bottom: 10,
               right: 30,
@@ -298,7 +210,9 @@ class _MoviedetailsState extends State<Moviedetails> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const Bookings()));
+                            builder: (context) => Bookings(
+                                  selectedMovie: widget.selected,
+                                )));
                   },
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -319,22 +233,22 @@ class _MoviedetailsState extends State<Moviedetails> {
 List casts = [
   {
     'image':
-        'https://th.bing.com/th/id/R.7d472b66940013e0d6cf8aeae4054f1d?rik=nNhL4V%2f31npOWg&pid=ImgRaw&r=0.jpg',
+        'https://th.bing.com/th/id/OIP.yEEAsSejuH2zIBdIatT07AHaKZ?w=197&h=278&c=7&r=0&o=5&dpr=1.1&pid=1.7.jpg',
     'text': 'James'
   },
   {
     'image':
-        'https://th.bing.com/th/id/R.7d472b66940013e0d6cf8aeae4054f1d?rik=nNhL4V%2f31npOWg&pid=ImgRaw&r=0.jpg',
+        'https://th.bing.com/th/id/OIP.i4gS0Wk09F9ZxJT5eMWHJwHaJQ?w=197&h=246&c=7&r=0&o=5&dpr=1.1&pid=1.7.jpg',
     'text': 'Scott'
   },
   {
     'image':
-        'https://th.bing.com/th/id/R.7d472b66940013e0d6cf8aeae4054f1d?rik=nNhL4V%2f31npOWg&pid=ImgRaw&r=0.jpg',
+        'https://th.bing.com/th/id/OIP.JQMUj_qHZ9ouUJqnc7cNmwAAAA?w=197&h=297&c=7&r=0&o=5&dpr=1.1&pid=1.7.jpg',
     'text': 'Daniel'
   },
   {
     'image':
-        'https://th.bing.com/th/id/R.7d472b66940013e0d6cf8aeae4054f1d?rik=nNhL4V%2f31npOWg&pid=ImgRaw&r=0.jpg',
+        'https://th.bing.com/th/id/OIP.ZQykV7WBRCtstHhSprdN0wHaLH?w=197&h=296&c=7&r=0&o=5&dpr=1.1&pid=1.7.jpg',
     'text': 'Collins'
   }
 ];

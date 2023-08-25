@@ -18,7 +18,7 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     _controller =
-        PageController(initialPage: _currentPage, viewportFraction: 0.9);
+        PageController(initialPage: _currentPage, viewportFraction: 0.85);
   }
 
   @override
@@ -84,21 +84,19 @@ class _HomeState extends State<Home> {
                             ));
                           },
                           child: Container(
-                              // duration: const Duration(seconds: 1),
-                              // curve: Curves.easeInBack,
-                              padding: const EdgeInsets.all(10),
+                              padding: const EdgeInsets.all(13),
                               margin: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.white10.withOpacity(0.9),
+                                    color: Colors.white10.withOpacity(0.5),
                                     // spreadRadius: 5,
-                                    // blurRadius: 10,
-                                    // offset: const Offset(0, 5),
+                                    blurRadius: 8,
+                                    offset: const Offset(0, 5),
                                   ),
                                 ],
                                 borderRadius: BorderRadius.circular(30),
-                                color: Colors.black38,
+                                color: Colors.white,
                               ),
                               child: Column(
                                 children: [
@@ -154,19 +152,19 @@ class _HomeState extends State<Home> {
                                           child: const Text(
                                             'Sci-Fi',
                                             style:
-                                                TextStyle(color: Colors.white),
+                                                TextStyle(color: Colors.black),
                                           )),
                                       OutlinedButton(
                                           onPressed: () {},
                                           child: const Text('Action',
                                               style: TextStyle(
-                                                  color: Colors.white))),
+                                                  color: Colors.black))),
                                       OutlinedButton(
                                           onPressed: () {},
                                           child: const Text(
                                             'Comedy',
                                             style:
-                                                TextStyle(color: Colors.white),
+                                                TextStyle(color: Colors.black),
                                           ))
                                     ],
                                   )
