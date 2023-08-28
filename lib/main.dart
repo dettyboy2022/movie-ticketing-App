@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movie_ticketing/home.dart';
+import 'package:movie_ticketing/widget/bottmnav.dart';
 
-void main() { 
+void main() {
   runApp(const MyApp());
 }
 
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Home(),
+      home: const BottomNavBar(),
     );
   }
 }

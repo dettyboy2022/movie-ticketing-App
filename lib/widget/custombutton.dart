@@ -22,20 +22,3 @@ class CustomButton extends StatelessWidget {
   }
 }
 
-// import 'package:flutter/material.dart';
-
-// class CustomButton extends StatelessWidget {
-//   final Widget child;
-//   final VoidCallback onPressed;
-
-//   CustomButton({required this.child, required this.onPressed});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return ElevatedButton(
-//       onPressed: onPressed,
-//       child: child,
-//     );
-//   }
-// }
-

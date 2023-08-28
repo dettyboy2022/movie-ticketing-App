@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movie_ticketing/views/moviedetails.dart';
-
 import 'model/cardmodel.dart';
 
 class Home extends StatefulWidget {
@@ -18,7 +17,7 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     _controller =
-        PageController(initialPage: _currentPage, viewportFraction: 0.85);
+        PageController(initialPage: _currentPage, viewportFraction: 0.9);
   }
 
   @override
@@ -175,28 +174,6 @@ class _HomeState extends State<Home> {
               const SizedBox(
                 height: 10,
               ),
-              Container(
-                width: 300,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    border: Border.all(
-                      color: Colors.white,
-                    )),
-                child: const BottomAppBar(
-                  color: Colors.transparent,
-                  elevation: 0,
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(
-                          Icons.home,
-                          color: Colors.white,
-                        ),
-                        Icon(Icons.movie, color: Colors.white),
-                        Icon(Icons.person, color: Colors.white)
-                      ]),
-                ),
-              )
             ]),
           ),
         ),

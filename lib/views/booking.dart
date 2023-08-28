@@ -14,7 +14,6 @@ class Bookings extends StatefulWidget {
 }
 
 class _BookingsState extends State<Bookings> {
-
   List<String> selectedSeat = [];
 
   void _onSeatSelected(String seat) {
@@ -244,23 +243,19 @@ class _BookingsState extends State<Bookings> {
                 children: [
                   CustomButton(
                     onPressed: () {
-                      if (selectedTime != null) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Ticket(
-                              selectedTime: selectedTime,
-                              selectedCinema: selectedCinema,
-                              selectedSeat: selectedSeat[0],
-                              selectedTitle: widget.selectedMovie.title,
-                              selectedImageUrl: widget.selectedMovie.url,
-                              selectedDate: dateControl.text,
-                            ),
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Ticket(
+                            selectedTime: selectedTime,
+                            selectedCinema: selectedCinema,
+                            selectedSeat: selectedSeat[0],
+                            selectedTitle: widget.selectedMovie.title,
+                            selectedImageUrl: widget.selectedMovie.url,
+                            selectedDate: dateControl.text,
                           ),
-                        );
-                      } else {
-                        // Handle case where no time is selected
-                      }
+                        ),
+                      );
                     },
                     text: 'Buy TIckets',
                   ),

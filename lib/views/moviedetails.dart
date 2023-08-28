@@ -106,7 +106,7 @@ class _MoviedetailsState extends State<Moviedetails> {
                                       style: TextStyle(color: Colors.white),
                                     ),
                                     Text(
-                                      '6/10',
+                                      '9.1/10',
                                       style: TextStyle(color: Colors.white),
                                     )
                                   ],
@@ -155,42 +155,54 @@ class _MoviedetailsState extends State<Moviedetails> {
                         'Description : ',
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
-                      const Text(
-                        'In a futuristic world torn by conflict, a reluctant hero emerges to uncover a hidden truth that could change everything. As secrets unravel and alliances shift, the fate of humanity hangs in the balance',
-                        style: TextStyle(color: Colors.white),
-                      ),
                       const SizedBox(
                         height: 10,
+                      ),
+                      const Text(
+                        'In a futuristic world torn by conflict, a reluctant hero emerges to uncover a hidden truth that could change everything. As secrets unravel and alliances shift, the fate of humanity hangs in the balance',
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      const SizedBox(
+                        height: 15,
                       ),
                       const Text(
                         'Directors : ',
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
-                      const Text(
-                        'James Cameron, Dwayne Johnson, Will Smith',
-                        style: TextStyle(color: Colors.white),
-                      ),
                       const SizedBox(
                         height: 10,
+                      ),
+                      const Text(
+                        'James Cameron, Dwayne Johnson, Will Smith',
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      const SizedBox(
+                        height: 15,
                       ),
                       const Text(
                         'Writers : ',
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
-                      const Text(
-                        'In a futuristic world torn by conflict, a reluctant hero emerges to uncover a hidden truth that could change everything. As secrets unravel and alliances shift, the fate of humanity hangs in the balance',
-                        style: TextStyle(color: Colors.white),
-                      ),
                       const SizedBox(
                         height: 10,
+                      ),
+                      const Text(
+                        'In a futuristic world torn by conflict, a reluctant hero emerges to uncover a hidden truth that could change everything. As secrets unravel and alliances shift, the fate of humanity hangs in the balance',
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      const SizedBox(
+                        height: 15,
                       ),
                       const Text(
                         'Storyline : ',
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       const Text(
                         'Amidst this surreal occurrence, Sarah, a gifted artist haunted by a tragic loss, discovers that she can control these echoes. As she delves into the echoes, she uncovers long-forgotten secrets and embarks on a journey to rewrite her own history.',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.grey),
                       ),
                     ],
                   ),
@@ -212,7 +224,6 @@ class _MoviedetailsState extends State<Moviedetails> {
                             Bookings(selectedMovie: widget.selected)));
               },
             ),
-           
           ),
         ],
       ),
