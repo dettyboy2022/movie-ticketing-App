@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movie_ticketing/home.dart';
+import 'package:movie_ticketing/widget/custombutton.dart';
 import 'package:ticket_widget/ticket_widget.dart';
 
 class Ticket extends StatelessWidget {
@@ -7,6 +9,7 @@ class Ticket extends StatelessWidget {
   final String selectedSeat;
   final String selectedTitle;
   final String selectedImageUrl;
+  final String selectedDate;
 
   const Ticket({
     super.key,
@@ -15,12 +18,17 @@ class Ticket extends StatelessWidget {
     required this.selectedSeat,
     required this.selectedTitle,
     required this.selectedImageUrl,
+    required this.selectedDate,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.white),
+        backgroundColor: Colors.black,
+      ),
       body: Center(
         child: Column(
           children: [
@@ -36,11 +44,17 @@ class Ticket extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     child: Image.network(
                       selectedImageUrl,
-                      width: 200,
+                      width: double.infinity,
+                      height: 300,
+                      fit: BoxFit.cover,
                     ),
                   ),
                   const SizedBox(
                     height: 10,
+                  ),
+                  Text(
+                    'Date: $selectedDate',
+                    style: const TextStyle(fontSize: 18),
                   ),
                   Text(
                     selectedTitle,
@@ -83,13 +97,12 @@ class Ticket extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                    minimumSize: const Size(200, 50)),
-                onPressed: () {},
-                child: const Text('Save'))
+            CustomButton(
+                text: 'Save',
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => const Home()));
+                })
           ],
         ),
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_ticketing/home.dart';
 
-void main() {
+void main() { 
   runApp(const MyApp());
 }
 

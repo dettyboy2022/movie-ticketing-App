@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_ticketing/model/cardmodel.dart';
 import 'package:movie_ticketing/views/booking.dart';
+import 'package:movie_ticketing/widget/custombutton.dart';
 
 class Moviedetails extends StatefulWidget {
   final PageViewData selected;
@@ -198,32 +199,21 @@ class _MoviedetailsState extends State<Moviedetails> {
             ],
           ),
           Positioned(
-              bottom: 10,
-              right: 30,
-              left: 30,
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      minimumSize: const Size(300, 60)),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Bookings(
-                                  selectedMovie: widget.selected,
-                                )));
-                  },
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.airplane_ticket),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text('Book Now'),
-                    ],
-                  )))
+            bottom: 10,
+            right: 30,
+            left: 30,
+            child: CustomButton(
+              text: 'Book Now',
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            Bookings(selectedMovie: widget.selected)));
+              },
+            ),
+           
+          ),
         ],
       ),
     );

@@ -41,11 +41,11 @@ class _HomeState extends State<Home> {
                   Container(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Colors.black,
                           borderRadius: BorderRadius.circular(20)),
                       child: const Text(
                         'Now Showing',
-                        style: TextStyle(color: Colors.black),
+                        style: TextStyle(color: Colors.white, fontSize: 16),
                       )),
                   const SizedBox(
                     width: 15,
@@ -53,12 +53,12 @@ class _HomeState extends State<Home> {
                   Container(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          border: Border.all(),
+                          // color: Colors.transparent,
+                          border: Border.all(color: Colors.white),
                           borderRadius: BorderRadius.circular(20)),
                       child: const Text(
                         'Coming Soon',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.black, fontSize: 16),
                       )),
                 ],
               ),

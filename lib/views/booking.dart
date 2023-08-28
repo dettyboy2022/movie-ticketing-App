@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../model/cardmodel.dart';
+import '../widget/custombutton.dart';
 import 'ticktet.dart';
 
 class Bookings extends StatefulWidget {
@@ -13,11 +14,16 @@ class Bookings extends StatefulWidget {
 }
 
 class _BookingsState extends State<Bookings> {
-  late String selectedSeat;
+
+  List<String> selectedSeat = [];
 
   void _onSeatSelected(String seat) {
     setState(() {
-      selectedSeat = seat;
+      if (selectedSeat.contains(seat)) {
+        selectedSeat.remove(seat);
+      } else {
+        selectedSeat.add(seat);
+      }
     });
   }
 
@@ -63,6 +69,7 @@ class _BookingsState extends State<Bookings> {
               SizedBox(
                 width: 150,
                 child: TextField(
+                  keyboardType: TextInputType.datetime,
                   style: const TextStyle(color: Colors.white),
                   decoration: const InputDecoration(
                       hintStyle: TextStyle(color: Colors.white),
@@ -91,26 +98,31 @@ class _BookingsState extends State<Bookings> {
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: time
-                      .map((e) => GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                selectedTime = e;
-                              });
-                            },
-                            child: Container(
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              padding: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.white)),
-                              child: Text(
-                                e,
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                            ),
-                          ))
-                      .toList(),
+                  children: time.map((e) {
+                    final isSelected = selectedTime == e;
+
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedTime = e;
+                        });
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 10),
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white),
+                          color: isSelected ? Colors.blue : Colors.transparent,
+                        ),
+                        child: Text(
+                          e,
+                          style: TextStyle(
+                            color: isSelected ? Colors.white : Colors.white,
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList(),
                 ),
               ),
               const SizedBox(
@@ -123,41 +135,52 @@ class _BookingsState extends State<Bookings> {
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: cinemaType
-                      .map((e) => Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  selectedCinema = e;
-                                });
-                              },
-                              child: Text(
-                                e,
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                            ),
-                          ))
-                      .toList(),
+                  children: cinemaType.map((e) {
+                    final isSelected = selectedCinema == e;
+
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedCinema = e;
+                          });
+                        },
+                        child: Text(
+                          e,
+                          style: TextStyle(
+                            color: isSelected ? Colors.blue : Colors.white,
+                            fontWeight: isSelected
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList(),
                 ),
               ),
               GridView.builder(
-                  shrinkWrap: true,
-                  itemCount: 25,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 5,
-                  ),
-                  itemBuilder: (context, index) {
-                    final seat = 'Seat ${index + 1}';
-                    return IconButton(
-                        onPressed: () {
-                          _onSeatSelected(seat);
-                        },
-                        icon: const Icon(
-                          Icons.chair,
-                          color: Colors.white,
-                        ));
-                  }),
+                shrinkWrap: true,
+                itemCount: 25,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 5,
+                ),
+                itemBuilder: (context, index) {
+                  final seat = 'Seat ${index + 1}';
+                  final isSelected = selectedSeat.contains(seat);
+
+                  return IconButton(
+                    onPressed: () {
+                      _onSeatSelected(seat);
+                    },
+                    icon: Icon(
+                      Icons.chair,
+                      color: isSelected ? Colors.green : Colors.white,
+                    ),
+                  );
+                },
+              ),
               const Divider(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -219,30 +242,28 @@ class _BookingsState extends State<Bookings> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5)),
-                          minimumSize: const Size(300, 50)),
-                      onPressed: () {
-                        if (selectedTime != null) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => Ticket(
-                                selectedTime: selectedTime,
-                                selectedCinema: selectedCinema,
-                                selectedSeat: selectedSeat,
-                                selectedTitle: widget.selectedMovie.title,
-                                selectedImageUrl: widget.selectedMovie.url,
-                              ),
+                  CustomButton(
+                    onPressed: () {
+                      if (selectedTime != null) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Ticket(
+                              selectedTime: selectedTime,
+                              selectedCinema: selectedCinema,
+                              selectedSeat: selectedSeat[0],
+                              selectedTitle: widget.selectedMovie.title,
+                              selectedImageUrl: widget.selectedMovie.url,
+                              selectedDate: dateControl.text,
                             ),
-                          );
-                        } else {
-                          // Handle case where no time is selected
-                        }
-                      },
-                      child: const Text('Buy Tickets')),
+                          ),
+                        );
+                      } else {
+                        // Handle case where no time is selected
+                      }
+                    },
+                    text: 'Buy TIckets',
+                  ),
                 ],
               )
             ],
@@ -262,18 +283,18 @@ class _BookingsState extends State<Bookings> {
     '11:50 PM',
   ];
 
-  late String selectedTime;
+  String selectedTime = '';
 
   List cinemaType = [
     'Extreme 3D',
     'Ultra 4K',
     'BLU-RAY',
     'IMAX',
-    'Extreme 3D',
-    'Ultra 4K',
-    'BLU-RAY',
-    'IMAX',
+    'VR',
+    'Regular',
+    'Standard',
+    'VVIP',
   ];
 
-  late String selectedCinema;
+  String selectedCinema = '';
 }
