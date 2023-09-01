@@ -20,25 +20,33 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[currentIndex],
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(15)),
-        child: BottomNavigationBar(
-            onTap: (value) {
-              setState(() {
-                currentIndex = value;
-              });
-            },
-            currentIndex: currentIndex,
-            backgroundColor: Colors.transparent,
-            fixedColor: Colors.red,
-            items: const [
-              BottomNavigationBarItem(icon: Icon(Iconsax.home), label: 'Home'),
-              BottomNavigationBarItem(
-                  icon: Icon(Iconsax.ticket), label: 'Ticket'),
-            ]),
-      ),
+      body: Stack(children: [
+        pages[currentIndex],
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+          child: Align(
+            alignment: const Alignment(0.0, 1.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: BottomNavigationBar(
+                onTap: (value) {
+                  setState(() {
+                    currentIndex = value;
+                  });
+                },
+                currentIndex: currentIndex,
+                fixedColor: Colors.black,
+                items: const [
+                  BottomNavigationBarItem(
+                      icon: Icon(Iconsax.home), label: 'Home'),
+                  BottomNavigationBarItem(
+                      icon: Icon(Iconsax.ticket), label: 'Ticket')
+                ],
+              ),
+            ),
+          ),
+        )
+      ]),
     );
   }
 }

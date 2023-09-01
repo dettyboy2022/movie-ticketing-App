@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:movie_ticketing/views/moviedetails.dart';
 import 'model/cardmodel.dart';
@@ -19,6 +21,9 @@ class _HomeState extends State<Home> {
     _controller =
         PageController(initialPage: _currentPage, viewportFraction: 0.9);
   }
+
+  final double _movieCardPage = 0.0;
+  final int _movieCardIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +66,10 @@ class _HomeState extends State<Home> {
                       )),
                 ],
               ),
-              const Spacer(),
+              // const Spacer(),
+              const SizedBox(
+                height: 200,
+              ),
               SizedBox(
                   height: 500,
                   child: PageView.builder(
@@ -74,6 +82,12 @@ class _HomeState extends State<Home> {
                       },
                       itemBuilder: (context, index) {
                         final selectedMovie = pagedata[index];
+                        final progress = (_movieCardPage - index);
+                        final scale = lerpDouble(1, 1, progress.abs());
+                        final isScrolling =
+                            _controller.position.isScrollingNotifier.value;
+                        final isCurrentPage = index == _movieCardIndex;
+                        final isFirstPage = index == 0;
                         return GestureDetector(
                           onTap: () {
                             Navigator.push(context, MaterialPageRoute(
@@ -82,93 +96,103 @@ class _HomeState extends State<Home> {
                               },
                             ));
                           },
-                          child: Container(
-                              padding: const EdgeInsets.all(13),
-                              margin: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.white10.withOpacity(0.5),
-                                    // spreadRadius: 5,
-                                    blurRadius: 8,
-                                    offset: const Offset(0, 5),
-                                  ),
-                                ],
-                                borderRadius: BorderRadius.circular(30),
-                                color: Colors.white,
-                              ),
-                              child: Column(
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(30),
-                                    child: Hero(
-                                      tag: 'animate-${pagedata[index].url}',
-                                      child: Image.network(
-                                        pagedata[index].url,
-                                        fit: BoxFit.cover,
-                                        width: double.infinity,
-                                        height: 300,
+                          child: Transform.scale(
+                            alignment: Alignment.lerp(Alignment.topLeft,
+                                Alignment.topRight, -progress),
+                            scale: scale,
+                            child: AnimatedContainer(
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.bounceInOut,
+                                transform: Matrix4.identity()
+                                  ..translate(isCurrentPage ? 0.0 : -20.0,
+                                      isCurrentPage ? 0.0 : 60.0),
+                                padding: const EdgeInsets.all(10),
+                                margin: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      color: Colors.black87,
+                                      spreadRadius: 5,
+                                      blurRadius: 8,
+                                      offset: Offset(0, 5),
+                                    ),
+                                  ],
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: Colors.white,
+                                ),
+                                child: Column(
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(30),
+                                      child: Hero(
+                                        tag: 'animate-${pagedata[index].url}',
+                                        child: Image.network(
+                                          pagedata[index].url,
+                                          fit: BoxFit.cover,
+                                          width: double.infinity,
+                                          height: 300,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
-                                  const Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text('Language: English'),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.star,
-                                            color: Colors.yellow,
-                                          ),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          Text('8.0')
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                  Text(
-                                    pagedata[index].title,
-                                    style: const TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w900),
-                                  ),
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      OutlinedButton(
-                                          onPressed: () {},
-                                          child: const Text(
-                                            'Sci-Fi',
-                                            style:
-                                                TextStyle(color: Colors.black),
-                                          )),
-                                      OutlinedButton(
-                                          onPressed: () {},
-                                          child: const Text('Action',
+                                    const SizedBox(
+                                      height: 15,
+                                    ),
+                                    const Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text('Language: English'),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.star,
+                                              color: Colors.yellow,
+                                            ),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text('8.0')
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                    Text(
+                                      pagedata[index].title,
+                                      style: const TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w900),
+                                    ),
+                                    const SizedBox(
+                                      height: 15,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        OutlinedButton(
+                                            onPressed: () {},
+                                            child: const Text(
+                                              'Sci-Fi',
                                               style: TextStyle(
-                                                  color: Colors.black))),
-                                      OutlinedButton(
-                                          onPressed: () {},
-                                          child: const Text(
-                                            'Comedy',
-                                            style:
-                                                TextStyle(color: Colors.black),
-                                          ))
-                                    ],
-                                  )
-                                ],
-                              )),
+                                                  color: Colors.black),
+                                            )),
+                                        OutlinedButton(
+                                            onPressed: () {},
+                                            child: const Text('Action',
+                                                style: TextStyle(
+                                                    color: Colors.black))),
+                                        OutlinedButton(
+                                            onPressed: () {},
+                                            child: const Text(
+                                              'Comedy',
+                                              style: TextStyle(
+                                                  color: Colors.black),
+                                            ))
+                                      ],
+                                    )
+                                  ],
+                                )),
+                          ),
                         );
                       })),
               const SizedBox(

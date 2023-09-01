@@ -257,7 +257,7 @@ class _BookingsState extends State<Bookings> {
                         ),
                       );
                     },
-                    text: 'Buy TIckets',
+                    text: 'Buy Tickets',
                   ),
                 ],
               )
