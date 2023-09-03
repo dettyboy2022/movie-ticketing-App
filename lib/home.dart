@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:movie_ticketing/views/moviedetails.dart';
 import 'model/cardmodel.dart';
@@ -21,9 +19,6 @@ class _HomeState extends State<Home> {
     _controller =
         PageController(initialPage: _currentPage, viewportFraction: 0.9);
   }
-
-  final double _movieCardPage = 0.0;
-  final int _movieCardIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +52,6 @@ class _HomeState extends State<Home> {
                   Container(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                          // color: Colors.transparent,
                           border: Border.all(color: Colors.white),
                           borderRadius: BorderRadius.circular(20)),
                       child: const Text(
@@ -66,13 +60,13 @@ class _HomeState extends State<Home> {
                       )),
                 ],
               ),
-              // const Spacer(),
               const SizedBox(
                 height: 200,
               ),
               SizedBox(
                   height: 500,
                   child: PageView.builder(
+                      clipBehavior: Clip.none,
                       itemCount: pagedata.length,
                       controller: _controller,
                       onPageChanged: (value) {
@@ -82,12 +76,7 @@ class _HomeState extends State<Home> {
                       },
                       itemBuilder: (context, index) {
                         final selectedMovie = pagedata[index];
-                        final progress = (_movieCardPage - index);
-                        final scale = lerpDouble(1, 1, progress.abs());
-                        final isScrolling =
-                            _controller.position.isScrollingNotifier.value;
-                        final isCurrentPage = index == _movieCardIndex;
-                        final isFirstPage = index == 0;
+                        var scale = _currentPage == index ? 1.0 : 0.9;
                         return GestureDetector(
                           onTap: () {
                             Navigator.push(context, MaterialPageRoute(
@@ -96,16 +85,17 @@ class _HomeState extends State<Home> {
                               },
                             ));
                           },
-                          child: Transform.scale(
-                            alignment: Alignment.lerp(Alignment.topLeft,
-                                Alignment.topRight, -progress),
-                            scale: scale,
-                            child: AnimatedContainer(
-                                duration: const Duration(milliseconds: 500),
-                                curve: Curves.bounceInOut,
-                                transform: Matrix4.identity()
-                                  ..translate(isCurrentPage ? 0.0 : -20.0,
-                                      isCurrentPage ? 0.0 : 60.0),
+                          child: TweenAnimationBuilder(
+                            curve: Curves.easeInOut,
+                            tween: Tween(begin: scale, end: scale),
+                            duration: const Duration(milliseconds: 600),
+                            builder: (context, value, child) {
+                              return Transform.scale(
+                                scale: value,
+                                child: child,
+                              );
+                            },
+                            child: Container(
                                 padding: const EdgeInsets.all(10),
                                 margin: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
@@ -118,7 +108,7 @@ class _HomeState extends State<Home> {
                                     ),
                                   ],
                                   borderRadius: BorderRadius.circular(30),
-                                  color: Colors.white,
+                                  color: Colors.grey,
                                 ),
                                 child: Column(
                                   children: [
@@ -195,9 +185,6 @@ class _HomeState extends State<Home> {
                           ),
                         );
                       })),
-              const SizedBox(
-                height: 10,
-              ),
             ]),
           ),
         ),

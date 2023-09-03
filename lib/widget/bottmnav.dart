@@ -34,6 +34,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                     currentIndex = value;
                   });
                 },
+                backgroundColor: Colors.grey,
                 currentIndex: currentIndex,
                 fixedColor: Colors.black,
                 items: const [
