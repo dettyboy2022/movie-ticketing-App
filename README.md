@@ -1,4 +1,10 @@
 # movie_ticketing
+A movie ticketing app for users to get tickets and seats for movies available in a Cinema.
+
+# Video
+
+
+https://github.com/dettyboy2022/movie-ticketing-App/assets/108200853/d118b537-7c96-4e4e-a59c-5552f0311a11
 
 
 # Screenshot
